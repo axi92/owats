@@ -46,13 +46,13 @@ func ScreenCaptureAll() {
 
 func Example_lookup() {
 	// Load full image
-	img := loadImage("all.jpg")
+	img := loadImage("all.png")
 
 	// Create a lookup for that image
 	l := lookup.NewLookup(img)
 
 	// Load a template to search inside the image
-	template := loadImage("ana_blue.jpg")
+	template := loadImage("ana_blue.png")
 
 	// Find all occurrences of the template in the image
 	pp, _ := l.FindAll(template, 0.9)
