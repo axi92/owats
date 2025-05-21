@@ -78,10 +78,11 @@ func Example_lookup() {
 				fmt.Printf("- (%d, %d) with %f accuracy\n", p.X, p.Y, p.G)
 				drawingRect := image.Rect(p.X, p.Y, p.X+1, p.Y+1)
 
-				drawing := drawRectangle(img.Screenshot, drawingRect, color.RGBA{255, 255, 255, 255})
+				// This is not working, the input image is not changed, no red rectangle is visible after that function call
+				drawRectangle(img.Screenshot.(*image.RGBA), drawingRect, color.RGBA{255, 0, 0, 150})
 				// isChanged := isImageChanged(originalImage, painted)
 				// fmt.Printf("Image has changed: %v\n", isChanged)
-				SaveImageToFile(drawing, "drawing.jpeg")
+				SaveImageToFile(img.Screenshot, "drawing.jpeg")
 			}
 		} else {
 			println("No matches found")

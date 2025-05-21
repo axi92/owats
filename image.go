@@ -48,30 +48,18 @@ func SaveImageToFile(image image.Image, filename string) {
 }
 
 // Function to draw a rectangle on an image
-func drawRectangle(img image.Image, rect image.Rectangle, col color.Color) image.Image {
-	// Create a new RGBA image with the same bounds as the input image
-	rgbaImg := image.NewRGBA(img.Bounds())
-
-	// Copy the input image to the RGBA image
-	for y := img.Bounds().Min.Y; y < img.Bounds().Max.Y; y++ {
-		for x := img.Bounds().Min.X; x < img.Bounds().Max.X; x++ {
-			rgbaImg.Set(x, y, img.At(x, y))
-		}
-	}
-
+func drawRectangle(img *image.RGBA, rect image.Rectangle, col color.Color) {
 	// Draw the top and bottom edges
 	for x := rect.Min.X; x < rect.Max.X; x++ {
-		rgbaImg.Set(x, rect.Min.Y, col)   // Top edge
-		rgbaImg.Set(x, rect.Max.Y-1, col) // Bottom edge
+		img.Set(x, rect.Min.Y, col)   // Top edge
+		img.Set(x, rect.Max.Y-1, col) // Bottom edge
 	}
 
 	// Draw the left and right edges
 	for y := rect.Min.Y; y < rect.Max.Y; y++ {
-		rgbaImg.Set(rect.Min.X, y, col)   // Left edge
-		rgbaImg.Set(rect.Max.X-1, y, col) // Right edge
+		img.Set(rect.Min.X, y, col)   // Left edge
+		img.Set(rect.Max.X-1, y, col) // Right edge
 	}
-
-	return rgbaImg.SubImage(img.Bounds())
 }
 
 func isImageChanged(img1, img2 *image.RGBA) bool {
