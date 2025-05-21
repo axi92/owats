@@ -14,6 +14,7 @@ var Assets = map[string]struct {
 	Image        image.Image
 	SearchBounds image.Rectangle
 	Lookup       *lookup.Lookup
+	Screenshot   image.Image // Place to temporary save the last screenshot where the lookup was created from
 }{}
 
 // LoadImages loads all images from the assets directory into the global map
@@ -47,7 +48,7 @@ func LoadImages() {
 				// y points from top down
 				int(math.Round(0.14*1920)), // x min
 				int(math.Round(0.17*1080)), // y min
-				int(math.Round(0.18*1920)), // x max
+				int(math.Round(0.22*1920)), // x max
 				int(math.Round(0.47*1080)), // y max
 			),
 		},
@@ -60,6 +61,7 @@ func LoadImages() {
 			Image        image.Image
 			SearchBounds image.Rectangle
 			Lookup       *lookup.Lookup
+			Screenshot   image.Image
 		}{
 			Image:        img,
 			SearchBounds: file.SearchBounds,
